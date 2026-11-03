@@ -1,4 +1,4 @@
-FAUNA NUSANTARA — WEBSITE REFRESH VERSI 4
+FAUNA NUSANTARA — https://fadhilandredo.github.io/fauna-nusantara/
 
 ISI PAKET
 - home.html, peta.html, asiatis.html, peralihan.html, australis.html
