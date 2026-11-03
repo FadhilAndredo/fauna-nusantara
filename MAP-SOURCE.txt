@@ -1,0 +1,20 @@
+PETA PERSEBARAN FAUNA — CATATAN SUMBER DAN METODE
+
+Garis pantai:
+- Sumber geometri daratan: GSHHS (Global Self-consistent, Hierarchical, High-resolution Geography Database), resolusi intermediate, yang tersedia bersama Matplotlib Basemap.
+- Informasi umum dataset: NOAA/NCEI, https://www.ngdc.noaa.gov/mgg/shorelines/shorelines.html
+- Data tersebut dipakai untuk membentuk outline gugusan pulau. Bentuknya bukan hasil digitasi manual atau siluet ilustratif.
+- Jumlah poligon SVG: Asiatis 70, Peralihan 75, Australis 19, konteks 22. Poligon bukan jumlah pulau administratif; sebuah pulau dapat terdiri dari beberapa potongan geometri.
+
+Klasifikasi warna zona:
+- Hijau: Asiatis — Sumatra, Jawa, Bali, Kalimantan dan pulau-pulau sekitarnya.
+- Jingga: Peralihan — Sulawesi, Nusa Tenggara, dan sebagian besar gugusan Maluku.
+- Biru: Australis — Papua dan Kepulauan Aru.
+- Abu-abu: wilayah sekitar sebagai konteks geografis.
+Pembagian ini merupakan penyederhanaan untuk materi pembelajaran sekolah; tidak dimaksudkan sebagai peta batas administratif.
+
+Garis biogeografi:
+- Wallace (merah solid): ditampilkan dari Selat Lombok menuju Selat Makassar dan Laut Sulawesi. Rujukan: Modul IPS SMP Unit 3, https://www.pintar.tanotofoundation.org/wp-content/uploads/2021/09/Modul-II-IPS-SMP-MTs.pdf
+- Weber (ungu putus-putus): ditampilkan melintasi kawasan Kepulauan Tanimbar. Rujukan: Kompas, https://www.kompas.com/skola/read/2020/03/28/080000469/garis-weber-garis-wallace-dan-garis-lydekker
+- Peta biogeografi pembanding: Bappenas/KLHK/LIPI, IBSAP 2015–2020, Gambar 3.2 (Wallacea, Weber, dan Lydekker), https://ksdae.kehutanan.go.id/assets/publikasi/Buku_IBSAP%202015-2020.pdf
+- Jalur pada SVG merupakan anotasi garis khayal secara skematis untuk membantu siswa memahami posisi relatif. Bukan hasil pengukuran geodetik, navigasi, atau batas resmi.

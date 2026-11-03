@@ -1,0 +1,716 @@
+ :root {
+  color-scheme: light;
+  --ink: #172b24;
+  --muted: #62736b;
+  --line: #e2eae5;
+  --surface: #ffffff;
+  --surface-soft: #f5f8f5;
+  --green: #187653;
+  --green-dark: #10583e;
+  --mint: #dff3e8;
+  --blue: #3d6b91;
+  --gold: #bb8731;
+  --shadow: 0 18px 50px rgba(28, 61, 45, .09);
+  --radius-lg: 26px;
+  --radius-md: 18px;
+  --radius-sm: 12px;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  min-width: 320px;
+  color: var(--ink);
+  background: #f5f8f5;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+img { max-width: 100%; }
+a { color: inherit; }
+button, input { font: inherit; }
+button, a, summary { -webkit-tap-highlight-color: transparent; }
+a:focus-visible, button:focus-visible, input:focus-visible, summary:focus-visible {
+  outline: 3px solid rgba(24, 118, 83, .35);
+  outline-offset: 3px;
+}
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: rgba(255,255,255,.92);
+  border-bottom: 1px solid rgba(226,234,229,.9);
+  backdrop-filter: blur(14px);
+}
+.header-inner {
+  width: min(1160px, calc(100% - 40px));
+  min-height: 74px;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 22px;
+}
+.brand { display: inline-flex; align-items: center; gap: 11px; text-decoration: none; min-width: 0; }
+.brand-mark {
+  width: 40px; height: 40px; display: grid; place-items: center;
+  color: #fff; background: linear-gradient(145deg, #26966a, #10583e);
+  border-radius: 13px; font-weight: 850; font-size: 17px; letter-spacing: -.06em;
+  box-shadow: 0 7px 18px rgba(24,118,83,.2);
+}
+.brand-copy { display: grid; line-height: 1.15; }
+.brand-copy strong { font-size: 14px; letter-spacing: .07em; }
+.brand-copy span { color: var(--muted); font-size: 11px; margin-top: 4px; }
+.main-nav { display: flex; align-items: center; gap: 7px; }
+.main-nav a {
+  min-height: 44px; display: inline-flex; align-items: center; justify-content: center;
+  padding: 0 16px; border-radius: 999px; text-decoration: none;
+  color: #53675d; font-size: 13px; font-weight: 700; transition: .2s ease;
+}
+.main-nav a:hover, .main-nav a[aria-current="page"] { color: var(--green-dark); background: #eaf5ee; }
+.page-shell { width: min(1160px, calc(100% - 40px)); margin: 0 auto; }
+.breadcrumbs { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; color: #849189; font-size: 12px; padding: 22px 0 12px; }
+.breadcrumbs a { color: #527064; text-decoration: none; font-weight: 650; }
+.breadcrumbs a:hover { color: var(--green); text-decoration: underline; }
+.crumb-sep { color: #aab5ae; }
+.eyebrow {
+  display: inline-flex; align-items: center; gap: 8px; width: fit-content;
+  padding: 7px 12px; border: 1px solid rgba(24,118,83,.13);
+  background: rgba(255,255,255,.72); color: var(--green-dark);
+  border-radius: 999px; font-size: 11px; font-weight: 800; letter-spacing: .09em; text-transform: uppercase;
+}
+.eyebrow-dot { width: 7px; height: 7px; border-radius: 50%; background: #42a77a; }
+.hero {
+  position: relative; overflow: hidden; isolation: isolate;
+  margin: 25px 0 32px; padding: clamp(30px, 5.5vw, 66px);
+  border-radius: var(--radius-lg); color: white;
+  background: radial-gradient(circle at 83% 20%, rgba(162,220,180,.24), transparent 27%), linear-gradient(125deg, #103c2d 0%, #176c4a 58%, #25875f 100%);
+  box-shadow: 0 22px 55px rgba(19, 85, 58, .17);
+}
+.hero::before, .hero::after { content: ""; position: absolute; z-index: -1; border: 1px solid rgba(255,255,255,.12); border-radius: 50%; }
+.hero::before { width: 380px; height: 380px; right: -100px; top: -170px; }
+.hero::after { width: 250px; height: 250px; right: 40px; bottom: -190px; }
+.hero h1 { max-width: 780px; margin: 15px 0 12px; font-size: clamp(34px, 5.2vw, 58px); line-height: 1.08; letter-spacing: -.045em; }
+.hero p { max-width: 670px; margin: 0; color: rgba(255,255,255,.82); font-size: clamp(14px, 1.6vw, 17px); }
+.hero .eyebrow { color: #e5fff0; background: rgba(255,255,255,.1); border-color: rgba(255,255,255,.2); }
+.hero .eyebrow-dot { background: #b8f2cd; }
+.hero-actions { display: flex; flex-wrap: wrap; gap: 11px; margin-top: 26px; }
+.btn {
+  min-height: 48px; padding: 0 20px; display: inline-flex; align-items: center; justify-content: center; gap: 9px;
+  border: 1px solid transparent; border-radius: 13px; font-size: 13px; font-weight: 800;
+  text-decoration: none; cursor: pointer; transition: transform .18s ease, box-shadow .18s ease, background .18s ease;
+}
+.btn:hover { transform: translateY(-2px); }
+.btn-primary { color: #14573d; background: white; box-shadow: 0 8px 24px rgba(0,0,0,.12); }
+.btn-primary:hover { background: #edfff3; }
+.btn-ghost { color: white; background: rgba(255,255,255,.1); border-color: rgba(255,255,255,.3); }
+.btn-ghost:hover { background: rgba(255,255,255,.18); }
+.btn-green { color: white; background: var(--green); box-shadow: 0 8px 18px rgba(24,118,83,.15); }
+.btn-green:hover { background: var(--green-dark); }
+.btn-soft { color: #285b43; background: #e8f2eb; }
+.zone-actions { margin: -22px 0 42px; }
+.section-heading { display: flex; align-items: end; justify-content: space-between; gap: 18px; margin: 42px 0 18px; }
+.section-heading h2 { margin: 0; font-size: clamp(22px, 3vw, 30px); line-height: 1.2; letter-spacing: -.035em; }
+.section-heading p { max-width: 540px; margin: 7px 0 0; color: var(--muted); font-size: 14px; }
+.section-kicker { color: var(--green); font-size: 11px; font-weight: 850; letter-spacing: .12em; text-transform: uppercase; }
+.region-grid { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 18px; }
+.region-card {
+  min-width: 0; overflow: hidden; display: flex; flex-direction: column;
+  background: var(--surface); border: 1px solid var(--line); border-radius: 20px;
+  box-shadow: 0 8px 28px rgba(28,61,45,.045); text-decoration: none;
+  transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+}
+.region-card:hover { transform: translateY(-5px); border-color: #c6dfd0; box-shadow: var(--shadow); }
+.region-card-media { aspect-ratio: 16 / 9; overflow: hidden; background: linear-gradient(135deg,#dcece1,#edf3ed); }
+.region-card-media img { width: 100%; height: 100%; object-fit: contain; display: block; transition: transform .35s ease; }
+.region-card:hover .region-card-media img { transform: scale(1.035); }
+.region-card-body { padding: 19px 20px 21px; }
+.region-card-body h3 { margin: 0 0 6px; font-size: 19px; letter-spacing: -.02em; }
+.region-card-body p { margin: 0; color: var(--muted); font-size: 13px; }
+.card-link { margin-top: 14px; display: inline-flex; align-items: center; gap: 7px; color: var(--green); font-size: 12px; font-weight: 850; }
+.info-strip { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; margin: 24px 0 42px; }
+.info-chip { padding: 17px 18px; border: 1px solid var(--line); border-radius: 16px; background: rgba(255,255,255,.7); }
+.info-chip strong { display: block; font-size: 14px; }
+.info-chip span { display: block; color: var(--muted); font-size: 12px; margin-top: 3px; }
+.faq-list { display: grid; gap: 11px; margin: 20px 0 58px; }
+.faq-item { background: white; border: 1px solid var(--line); border-radius: 15px; overflow: clip; }
+.faq-item summary { min-height: 58px; padding: 16px 20px; display: flex; align-items: center; justify-content: space-between; gap: 16px; cursor: pointer; list-style: none; font-size: 14px; font-weight: 750; }
+.faq-item summary::-webkit-details-marker { display: none; }
+.faq-item summary::after { content: "+"; flex: 0 0 27px; width: 27px; height: 27px; display: grid; place-items: center; border-radius: 50%; color: var(--green); background: #edf7f0; font-size: 18px; font-weight: 500; }
+.faq-item[open] summary::after { content: "−"; }
+.faq-answer { padding: 0 20px 18px; color: var(--muted); font-size: 13px; }
+.faq-answer p { margin: 0; }
+.map-grid { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 18px; margin: 26px 0 54px; }
+.map-card { overflow: hidden; background: white; border: 1px solid var(--line); border-radius: 22px; box-shadow: 0 10px 30px rgba(28,61,45,.055); transition: transform .2s ease, box-shadow .2s ease; }
+.map-card:hover { transform: translateY(-4px); box-shadow: var(--shadow); }
+.map-card-link { display: flex; height: 100%; flex-direction: column; text-decoration: none; }
+.map-card-image { min-height: 205px; aspect-ratio: 4 / 3; display: grid; place-items: center; padding: 14px; background: linear-gradient(145deg,#e7f2e9,#f4f7f0); }
+.map-card-image img { width: 100%; height: 100%; object-fit: contain; }
+.map-card-content { padding: 18px 20px 20px; }
+.map-card-content .number { color: #8b9a91; font-size: 11px; font-weight: 850; letter-spacing: .1em; }
+.map-card-content h2 { margin: 4px 0 5px; font-size: 20px; letter-spacing: -.025em; }
+.map-card-content p { margin: 0; color: var(--muted); font-size: 13px; }
+.map-card-content .card-link { margin-top: 15px; }
+.zone-hero { margin: 18px 0 24px; padding: clamp(25px,4vw,42px); border-radius: 23px; color: white; background: linear-gradient(120deg,#174f3a,#23835b); position: relative; overflow: hidden; }
+.zone-hero::after { content: ""; position: absolute; width: 240px; height: 240px; border-radius: 50%; border: 1px solid rgba(255,255,255,.16); right: -55px; top: -120px; }
+.zone-hero h1 { margin: 10px 0 6px; font-size: clamp(30px,4vw,43px); line-height: 1.15; letter-spacing: -.04em; }
+.zone-hero p { max-width: 650px; margin: 0; color: rgba(255,255,255,.83); font-size: 14px; }
+.zone-hero .eyebrow { color: #e5fff0; background: rgba(255,255,255,.1); border-color: rgba(255,255,255,.18); }
+.zone-meta { display: flex; flex-wrap: wrap; gap: 9px; margin-top: 19px; }
+.zone-meta span { padding: 7px 11px; border-radius: 999px; color: white; background: rgba(255,255,255,.13); border: 1px solid rgba(255,255,255,.17); font-size: 11px; font-weight: 750; }
+.zone-tools { display: flex; align-items: end; justify-content: space-between; gap: 18px; margin: 25px 0 14px; }
+.zone-tools h2 { margin: 0; font-size: 21px; letter-spacing: -.03em; }
+.zone-tools p { margin: 4px 0 0; color: var(--muted); font-size: 12px; }
+.search-wrap { width: min(330px,100%); position: relative; }
+.search-wrap label { display: block; margin: 0 0 6px 2px; color: #597065; font-size: 11px; font-weight: 800; }
+.search-wrap input { width: 100%; min-height: 46px; padding: 0 14px 0 42px; border: 1px solid #dce7df; border-radius: 13px; background: white; color: var(--ink); outline: none; }
+.search-wrap input:focus { border-color: #68ad87; box-shadow: 0 0 0 4px rgba(24,118,83,.09); }
+.search-icon { position: absolute; left: 15px; bottom: 14px; color: #83948a; font-size: 15px; pointer-events: none; }
+.table-count { color: var(--muted); font-size: 12px; margin: 0 0 10px 2px; }
+.table-shell { overflow-x: auto; border: 1px solid var(--line); border-radius: 19px; background: white; box-shadow: 0 8px 28px rgba(28,61,45,.045); }
+.fauna-table { width: 100%; border-collapse: separate; border-spacing: 0; table-layout: fixed; }
+.fauna-table th { padding: 15px 16px; text-align: left; color: #52685c; background: #f1f7f2; border-bottom: 1px solid var(--line); font-size: 11px; font-weight: 850; letter-spacing: .06em; text-transform: uppercase; }
+.fauna-table th:first-child { width: 20%; }
+.fauna-table th:nth-child(2) { width: 19%; }
+.fauna-table th:nth-child(3) { width: 23%; }
+.fauna-table th:nth-child(4) { width: 38%; }
+.fauna-table td { padding: 17px 16px; vertical-align: top; border-bottom: 1px solid #edf1ee; color: #46584f; font-size: 12px; }
+.fauna-table tbody tr:last-child td { border-bottom: 0; }
+.fauna-table tbody tr:nth-child(even) { background: #fcfdfc; }
+.fauna-table tbody tr:hover { background: #f8fbf8; }
+.species { display: grid; gap: 10px; }
+.species-photo { display: block; width: 100%; aspect-ratio: 5 / 4; object-fit: cover; border-radius: 12px; background: #e8eee9; }
+.species h3 { margin: 0; color: var(--ink); font-size: 14px; line-height: 1.35; letter-spacing: -.015em; }
+.distribution strong { display: block; color: var(--ink); font-size: 12px; margin-bottom: 9px; }
+.distribution img { display: block; width: 100%; max-width: 180px; max-height: 118px; object-fit: contain; border-radius: 10px; background: #f0f4f0; }
+.no-map { color: #8c9991; font-size: 11px; font-style: italic; }
+.taxonomy { border: 1px solid #e6eee8; border-radius: 11px; background: #f8fbf8; overflow: hidden; }
+.taxonomy summary { min-height: 40px; padding: 9px 11px; display: flex; align-items: center; justify-content: space-between; gap: 8px; cursor: pointer; color: #315b47; font-size: 11px; font-weight: 800; list-style: none; }
+.taxonomy summary::-webkit-details-marker { display: none; }
+.taxonomy summary::after { content: "+"; color: var(--green); font-size: 16px; }
+.taxonomy[open] summary::after { content: "−"; }
+.taxonomy ul { list-style: none; margin: 0; padding: 0 11px 11px; }
+.taxonomy li { padding: 4px 0; border-top: 1px solid #e9efeb; color: #68786f; font-size: 11px; overflow-wrap: anywhere; }
+.fauna-description { margin: 0 0 12px; color: #52645a; font-size: 12px; line-height: 1.7; }
+.read-more { min-height: 38px; display: inline-flex; align-items: center; gap: 7px; color: var(--green); font-size: 11px; font-weight: 850; text-decoration: none; }
+.read-more:hover { color: var(--green-dark); text-decoration: underline; }
+.empty-state { display: none; padding: 25px; text-align: center; color: var(--muted); background: white; border: 1px dashed #cad9cf; border-radius: 15px; }
+.empty-state.is-visible { display: block; }
+.zone-switcher { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; margin: 26px 0 50px; }
+.zone-switcher a { min-height: 60px; padding: 10px 15px; display: flex; align-items: center; justify-content: space-between; gap: 10px; border: 1px solid var(--line); border-radius: 14px; background: white; text-decoration: none; font-size: 12px; font-weight: 800; transition: .18s ease; }
+.zone-switcher a:hover, .zone-switcher a[aria-current="page"] { border-color: #a9cfb8; background: #edf7f0; color: var(--green-dark); }
+.site-footer { margin-top: 55px; padding: 27px 0; color: #728178; background: #edf3ee; border-top: 1px solid #e0e9e2; }
+.footer-inner { width: min(1160px, calc(100% - 40px)); margin: auto; display: flex; align-items: center; justify-content: space-between; gap: 18px; font-size: 11px; }
+.footer-inner strong { color: #3d5949; }
+.back-top { text-decoration: none; color: var(--green); font-weight: 800; }
+@media (max-width: 860px) {
+  .region-grid, .map-grid { grid-template-columns: repeat(2,minmax(0,1fr)); }
+  .region-grid .region-card:last-child, .map-grid .map-card:last-child { grid-column: 1 / -1; }
+  .fauna-table { min-width: 900px; }
+}
+@media (max-width: 640px) {
+  .header-inner { width: min(100% - 28px, 1160px); min-height: 66px; gap: 10px; }
+  .brand-mark { width: 36px; height: 36px; border-radius: 11px; }
+  .brand-copy strong { font-size: 12px; }
+  .brand-copy span { font-size: 10px; }
+  .main-nav { gap: 1px; }
+  .main-nav a { min-height: 42px; padding: 0 11px; font-size: 11px; }
+  .page-shell { width: min(100% - 28px, 1160px); }
+  .breadcrumbs { padding-top: 17px; font-size: 11px; }
+  .hero { margin: 15px 0 27px; padding: 29px 23px; border-radius: 21px; }
+  .hero h1 { font-size: clamp(32px, 9vw, 44px); }
+  .hero p { font-size: 13px; }
+  .btn { min-height: 46px; padding: 0 16px; }
+  .section-heading { margin-top: 34px; align-items: start; flex-direction: column; gap: 8px; }
+  .region-grid, .map-grid { grid-template-columns: 1fr; gap: 13px; }
+  .region-grid .region-card:last-child, .map-grid .map-card:last-child { grid-column: auto; }
+  .region-card { display: grid; grid-template-columns: 118px minmax(0,1fr); }
+  .region-card-media { aspect-ratio: auto; min-height: 100%; }
+  .region-card-media img { min-height: 100%; }
+  .region-card-body { padding: 14px 15px; }
+  .region-card-body h3 { font-size: 16px; }
+  .region-card-body p { font-size: 12px; }
+  .card-link { margin-top: 9px; font-size: 11px; }
+  .info-strip { grid-template-columns: 1fr; gap: 8px; margin-bottom: 35px; }
+  .info-chip { padding: 13px 15px; }
+  .faq-item summary { min-height: 55px; padding: 14px 15px; font-size: 13px; }
+  .faq-answer { padding: 0 15px 16px; font-size: 12px; }
+  .map-card { display: grid; grid-template-columns: 42% minmax(0,1fr); }
+  .map-card-image { min-height: 100%; aspect-ratio: auto; padding: 9px; }
+  .map-card-content { padding: 15px; }
+  .map-card-content h2 { font-size: 17px; }
+  .map-card-content p { font-size: 12px; }
+  .zone-hero { margin-top: 12px; padding: 25px 21px; border-radius: 19px; }
+  .zone-tools { align-items: stretch; flex-direction: column; gap: 12px; }
+  .search-wrap { width: 100%; }
+  .table-shell { overflow: visible; border: 0; background: transparent; box-shadow: none; }
+  .fauna-table, .fauna-table tbody { display: block; width: 100%; min-width: 0; }
+  .fauna-table thead { display: none; }
+  .fauna-table tbody { display: grid; gap: 13px; }
+  .fauna-table tbody tr { display: grid; grid-template-columns: minmax(0,1fr); overflow: hidden; border: 1px solid var(--line); border-radius: 17px; background: white; box-shadow: 0 7px 22px rgba(28,61,45,.04); }
+  .fauna-table tbody tr:nth-child(even) { background: white; }
+  .fauna-table tbody td { display: block; padding: 13px 15px; border-bottom: 1px solid #edf1ee; font-size: 12px; }
+  .fauna-table tbody td:last-child { border-bottom: 0; }
+  .fauna-table tbody td:first-child { padding: 14px 15px; background: #f8fbf8; }
+  .species { grid-template-columns: 104px minmax(0,1fr); align-items: center; gap: 14px; }
+  .species-photo { width: 104px; height: 88px; aspect-ratio: auto; }
+  .species h3 { font-size: 15px; }
+  .distribution { display: grid; grid-template-columns: minmax(0,1fr) 100px; align-items: center; gap: 10px; }
+  .distribution strong { margin: 0; font-size: 12px; }
+  .distribution img { max-width: 100px; max-height: 72px; justify-self: end; }
+  .distribution::before { content: "ASAL & PERSEBARAN"; display: block; grid-column: 1 / -1; color: #89968e; font-size: 9px; font-weight: 850; letter-spacing: .09em; }
+  .fauna-table td:nth-child(3)::before { content: "KLASIFIKASI TAKSONOMI"; display: block; margin-bottom: 8px; color: #89968e; font-size: 9px; font-weight: 850; letter-spacing: .09em; }
+  .fauna-table td:nth-child(4)::before { content: "CIRI KHAS"; display: block; margin-bottom: 7px; color: #89968e; font-size: 9px; font-weight: 850; letter-spacing: .09em; }
+  .zone-switcher { grid-template-columns: 1fr; gap: 8px; margin: 20px 0 38px; }
+  .zone-switcher a { min-height: 51px; }
+  .footer-inner { width: min(100% - 28px, 1160px); flex-direction: column; align-items: start; gap: 6px; }
+}
+@media (max-width: 380px) {
+  .brand-copy span { display: none; }
+  .main-nav a { padding: 0 8px; font-size: 10px; }
+  .region-card { grid-template-columns: 96px minmax(0,1fr); }
+  .species { grid-template-columns: 86px minmax(0,1fr); }
+  .species-photo { width: 86px; height: 78px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+}
+
+
+/* --- Visual enhancement: illustrated fauna, motion, audio and animal cursor --- */
+.hero.home-hero {
+  min-height: clamp(390px, 47vw, 560px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-image:
+    linear-gradient(90deg, rgba(9, 47, 39, .90) 0%, rgba(12, 67, 51, .74) 47%, rgba(11, 55, 51, .18) 100%),
+    url("assets/indonesia-fauna-hero.webp");
+  background-size: cover;
+  background-position: center 48%;
+  box-shadow: 0 24px 58px rgba(19, 85, 58, .23);
+}
+.home-hero h1, .home-hero p, .home-hero .eyebrow, .home-hero .hero-actions {
+  position: relative;
+  z-index: 2;
+}
+.home-hero h1 { max-width: 700px; text-shadow: 0 2px 22px rgba(0,0,0,.22); }
+.home-hero p { max-width: 610px; text-shadow: 0 1px 12px rgba(0,0,0,.25); }
+.hero-floaters { position: absolute; inset: 0; z-index: 1; pointer-events: none; overflow: hidden; }
+.floater { position: absolute; display: block; filter: drop-shadow(0 5px 6px rgba(0,0,0,.2)); user-select: none; }
+.floater-bird { right: 9%; top: 17%; font-size: clamp(25px, 4vw, 42px); animation: fauna-fly 7s ease-in-out infinite; }
+.floater-butterfly { right: 29%; bottom: 19%; font-size: clamp(19px, 3vw, 30px); animation: fauna-drift 6s ease-in-out infinite; }
+.floater-turtle { right: 4%; bottom: 16%; font-size: clamp(24px, 3.3vw, 36px); animation: fauna-float 5s ease-in-out infinite; }
+.floater-leaf { right: 17%; top: 58%; font-size: clamp(20px, 2.7vw, 30px); animation: fauna-spin 11s linear infinite; }
+@keyframes fauna-float { 0%,100% { transform: translateY(0) rotate(-3deg); } 50% { transform: translateY(-13px) rotate(4deg); } }
+@keyframes fauna-fly { 0%,100% { transform: translate3d(0,0,0) rotate(-7deg); } 50% { transform: translate3d(-18px,-16px,0) rotate(7deg); } }
+@keyframes fauna-drift { 0%,100% { transform: translate3d(0,0,0) rotate(-8deg); } 50% { transform: translate3d(14px,-18px,0) rotate(10deg); } }
+@keyframes fauna-spin { from { transform: rotate(0deg) translateY(0); } 50% { transform: rotate(180deg) translateY(-8px); } to { transform: rotate(360deg) translateY(0); } }
+.region-card-media img, .map-card-image img { object-fit: cover; }
+.region-card-media { aspect-ratio: 16 / 10; }
+.zone-hero {
+  min-height: 265px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-size: cover;
+  background-position: center;
+  box-shadow: 0 16px 40px rgba(19, 85, 58, .15);
+}
+.zone-hero.zone-asiatis {
+  background-image: linear-gradient(90deg, rgba(13,55,38,.94) 0%, rgba(13,55,38,.77) 48%, rgba(13,55,38,.10) 100%), url("assets/fauna-zona-asiatis.webp");
+}
+.zone-hero.zone-peralihan {
+  background-image: linear-gradient(90deg, rgba(83,54,19,.94) 0%, rgba(83,54,19,.75) 48%, rgba(83,54,19,.08) 100%), url("assets/fauna-zona-peralihan.webp");
+}
+.zone-hero.zone-australis {
+  background-image: linear-gradient(90deg, rgba(13,47,74,.94) 0%, rgba(13,47,74,.76) 48%, rgba(13,47,74,.10) 100%), url("assets/fauna-zona-australis.webp");
+}
+.zone-hero > * { position: relative; z-index: 1; }
+.zone-hero .eyebrow { width: fit-content; }
+.audio-dock {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 12px;
+  color: #f4fff8;
+  background: rgba(12, 50, 39, .93);
+  border: 1px solid rgba(255,255,255,.18);
+  border-radius: 16px;
+  box-shadow: 0 12px 32px rgba(12, 47, 34, .23);
+  backdrop-filter: blur(12px);
+}
+.site-tools { position: fixed; z-index: 40; right: 18px; bottom: 18px; display: grid; gap: 8px; justify-items: end; }
+.audio-icon { width: 34px; height: 34px; display: grid; place-items: center; flex: 0 0 auto; border-radius: 11px; background: rgba(255,255,255,.13); font-size: 21px; }
+.audio-copy { display: grid; line-height: 1.2; min-width: 110px; }
+.audio-copy strong { font-size: 11px; }
+.audio-copy span { margin-top: 3px; color: rgba(242,255,247,.72); font-size: 10px; }
+.audio-toggle { width: 38px; height: 38px; border: 0; border-radius: 11px; color: #16533b; background: #d9f4e3; font-size: 16px; font-weight: 900; cursor: pointer; }
+.audio-toggle:hover { background: #fff; transform: translateY(-1px); }
+.volume-control { display: flex; align-items: center; gap: 4px; color: #dff8e8; font-size: 13px; }
+.volume-control input { width: 62px; accent-color: #a8e9bb; cursor: pointer; }
+.cursor-toggle { min-height: 34px; padding: 0 12px; border: 1px solid rgba(255,255,255,.14); border-radius: 999px; color: #eafff0; background: rgba(20,83,58,.92); font-size: 10px; font-weight: 750; cursor: pointer; box-shadow: 0 6px 18px rgba(12,47,34,.16); }
+.cursor-toggle[aria-pressed="false"] { color: #46584f; background: #fff; border-color: #dce7df; }
+body.animal-cursor-enabled,
+body.animal-cursor-enabled a,
+body.animal-cursor-enabled button,
+body.animal-cursor-enabled summary,
+body.animal-cursor-enabled .region-card,
+body.animal-cursor-enabled .map-card-link {
+  cursor: var(--animal-cursor, auto);
+}
+body.animal-cursor-enabled input,
+body.animal-cursor-enabled textarea { cursor: text; }
+@media (max-width: 640px) {
+  .hero.home-hero { min-height: 430px; background-position: 52% center; background-image: linear-gradient(90deg, rgba(9,47,39,.88), rgba(9,47,39,.56)), url("assets/indonesia-fauna-hero.webp"); }
+  .floater-bird { right: 8%; top: 9%; }
+  .floater-butterfly { right: 13%; bottom: 12%; }
+  .floater-turtle { right: 5%; bottom: 27%; }
+  .floater-leaf { right: 8%; top: 43%; }
+  .zone-hero { min-height: 270px; background-position: center; }
+  .zone-hero.zone-asiatis { background-image: linear-gradient(90deg, rgba(13,55,38,.90), rgba(13,55,38,.58)), url("assets/fauna-zona-asiatis.webp"); }
+  .zone-hero.zone-peralihan { background-image: linear-gradient(90deg, rgba(83,54,19,.91), rgba(83,54,19,.58)), url("assets/fauna-zona-peralihan.webp"); }
+  .zone-hero.zone-australis { background-image: linear-gradient(90deg, rgba(13,47,74,.91), rgba(13,47,74,.58)), url("assets/fauna-zona-australis.webp"); }
+  .site-tools { left: 10px; right: 10px; bottom: 10px; justify-items: stretch; }
+  .audio-dock { justify-content: space-between; gap: 8px; padding: 8px 10px; border-radius: 14px; }
+  .audio-copy { min-width: 0; flex: 1; }
+  .audio-copy strong { font-size: 10px; }
+  .volume-control input { width: 54px; }
+  .cursor-toggle { display: none; }
+  .site-footer { padding-bottom: 96px; }
+}
+@media (pointer: coarse) {
+  .cursor-toggle { display: none; }
+  body, body a, body button, body summary { cursor: auto !important; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .floater, .hero-floaters { animation: none !important; }
+}
+
+.motion-ready { opacity: 0; transform: translateY(16px); transition: opacity .45s ease, transform .45s ease; }
+.motion-ready.motion-visible { opacity: 1; transform: translateY(0); }
+@media (prefers-reduced-motion: reduce) { .motion-ready { opacity: 1; transform: none; transition: none; } }
+
+
+/* ===== V3: compact utility popover ===== */
+.site-tools { position: fixed; z-index: 60; right: 20px; bottom: 20px; display: block; }
+.utility-menu { position: relative; }
+.utility-trigger { list-style: none; width: 50px; height: 50px; display: grid; place-items: center; position: relative; border: 1px solid rgba(255,255,255,.65); border-radius: 17px; color: white; background: linear-gradient(145deg,#23875f,#10583e); box-shadow: 0 12px 30px rgba(13,73,49,.28); cursor: pointer; font-size: 21px; transition: transform .2s ease, box-shadow .2s ease; }
+.utility-trigger::-webkit-details-marker { display: none; }
+.utility-trigger:hover, .utility-menu[open] .utility-trigger { transform: translateY(-2px); box-shadow: 0 16px 34px rgba(13,73,49,.34); }
+.utility-dot { position: absolute; right: 9px; top: 8px; width: 8px; height: 8px; border: 2px solid #176c4a; border-radius: 50%; background: #f6d36d; }
+.utility-menu[open] .utility-dot { background: #8fe0ad; }
+.utility-popover { position: absolute; right: 0; bottom: 62px; width: min(310px, calc(100vw - 28px)); padding: 14px; border: 1px solid rgba(218,231,222,.95); border-radius: 19px; background: rgba(255,255,255,.97); box-shadow: 0 18px 55px rgba(21,53,37,.2); backdrop-filter: blur(16px); color: var(--ink); animation: utility-pop .18s ease-out; }
+@keyframes utility-pop { from { opacity: 0; transform: translateY(8px) scale(.98); } to { opacity: 1; transform: translateY(0) scale(1); } }
+.utility-popover-head { display: flex; justify-content: space-between; align-items: center; margin: 0 2px 12px; color: var(--green-dark); }
+.utility-popover-head div { display: grid; line-height: 1.25; }
+.utility-popover-head strong { font-size: 13px; }
+.utility-popover-head small { color: var(--muted); font-size: 10px; margin-top: 3px; }
+.utility-popover-head > span { color: #c28a31; font-size: 20px; }
+.audio-dock { display: flex; align-items: center; gap: 9px; padding: 10px; color: #f4fff8; background: linear-gradient(120deg,#123f30,#19744e); border-radius: 13px; box-shadow: none; }
+.audio-icon { width: 33px; height: 33px; display: grid; place-items: center; flex: 0 0 auto; border-radius: 10px; background: rgba(255,255,255,.13); font-size: 19px; }
+.audio-copy { display: grid; line-height: 1.2; min-width: 0; flex: 1; }
+.audio-copy strong { font-size: 10px; }
+.audio-copy span { margin-top: 3px; color: rgba(242,255,247,.72); font-size: 9px; }
+.audio-toggle { width: 35px; height: 35px; flex: 0 0 auto; border: 0; border-radius: 10px; color: #16533b; background: #d9f4e3; font-size: 14px; font-weight: 900; cursor: pointer; }
+.volume-control { display: flex; align-items: center; gap: 8px; margin: 12px 3px 5px; color: #53675d; font-size: 10px; font-weight: 750; }
+.volume-control input { flex: 1; width: 100px; accent-color: #21845b; cursor: pointer; }
+.utility-divider { height: 1px; margin: 11px 0; background: #e7eee9; }
+.cursor-setting { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+.cursor-setting > div { display: grid; line-height: 1.25; }
+.cursor-setting strong { color: #2a4637; font-size: 11px; }
+.cursor-setting small { margin-top: 3px; color: #809087; font-size: 9px; }
+.cursor-toggle { min-width: 48px; height: 29px; padding: 0 10px; border: 1px solid #c8e3d1; border-radius: 999px; color: #fff; background: #20845a; font-size: 10px; font-weight: 850; cursor: pointer; }
+.cursor-toggle[aria-pressed="false"] { color: #53675d; background: #f1f5f2; border-color: #dce7df; }
+.cursor-toggle:disabled { opacity: .55; cursor: not-allowed; }
+.utility-footnote { margin: 11px 1px 0; color: #819087; font-size: 9px; line-height: 1.4; }
+@media (max-width: 640px) {
+  .site-tools { right: 13px; bottom: 13px; }
+  .utility-trigger { width: 46px; height: 46px; border-radius: 15px; }
+  .utility-popover { bottom: 57px; }
+  .site-footer { padding-bottom: 35px; }
+}
+
+/* ===== V3: full interactive Indonesia fauna map ===== */
+.map-page { padding-bottom: 20px; }
+.atlas-hero { position: relative; overflow: hidden; isolation: isolate; display: flex; align-items: center; justify-content: space-between; gap: 20px; min-height: 220px; margin: 20px 0 30px; padding: clamp(27px,4vw,48px); border-radius: 25px; color: white; background: radial-gradient(circle at 82% 16%,rgba(255,255,255,.18),transparent 22%), linear-gradient(125deg,#103e32,#176c4a 60%,#2b8a69); box-shadow: 0 20px 50px rgba(19,85,58,.15); }
+.atlas-hero::before, .atlas-hero::after { content:""; position:absolute; z-index:-1; border:1px solid rgba(255,255,255,.14); border-radius:50%; }
+.atlas-hero::before { width:300px;height:300px;right:70px;top:-200px; }
+.atlas-hero::after { width:210px;height:210px;right:-35px;bottom:-155px; }
+.atlas-hero-copy { max-width:780px; }
+.atlas-hero h1 { margin:13px 0 10px; font-size:clamp(29px,4.2vw,48px); line-height:1.08; letter-spacing:-.045em; }
+.atlas-hero p { max-width:680px;margin:0;color:rgba(255,255,255,.83);font-size:14px; }
+.atlas-hero .eyebrow { color:#e5fff0;background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.2); }
+.atlas-hero .eyebrow-dot { background:#b8f2cd; }
+.atlas-hero-meta { display:flex;flex-wrap:wrap;gap:9px 18px;margin-top:20px;color:#e3f9e9;font-size:10px;font-weight:750; }
+.atlas-hero-mark { width:104px;height:104px;flex:0 0 auto;display:grid;place-items:center;border:1px solid rgba(255,255,255,.25);border-radius:28px;background:rgba(255,255,255,.11);font-size:53px;transform:rotate(7deg); }
+.atlas-section-heading { align-items:end; }
+.atlas-hint { display:inline-flex;align-items:center;gap:8px;white-space:nowrap;padding:9px 12px;border:1px solid #dcebe1;border-radius:999px;background:#f1f8f3;color:#416a53;font-size:10px;font-weight:750; }
+.hint-pulse { width:7px;height:7px;border-radius:50%;background:#3aa875;box-shadow:0 0 0 4px rgba(58,168,117,.13); }
+.atlas-layout { display:grid;grid-template-columns:minmax(0,1fr) 290px;align-items:stretch;gap:17px; }
+.atlas-map-frame { min-width:0;overflow:hidden;border:1px solid #dce9e4;border-radius:22px;background:#fff;box-shadow:0 16px 42px rgba(28,61,45,.07); }
+.atlas-map-topline { min-height:48px;display:flex;align-items:center;justify-content:space-between;gap:10px;padding:0 17px;border-bottom:1px solid #e7efeb;color:#476c59;font-size:9px;font-weight:900;letter-spacing:.1em; }
+.atlas-map-topline > span:first-child { display:inline-flex;align-items:center;gap:8px; }
+.atlas-map-topline i { width:7px;height:7px;border-radius:50%;background:#269566;box-shadow:0 0 0 4px #e3f4e9; }
+.map-scale { color:#8b9a91;font-size:9px;font-weight:600;letter-spacing:0; }
+.indonesia-map { display:block;width:100%;height:auto;aspect-ratio:1180/570; }
+.map-graticule path { fill:none;stroke:#6cabb0;stroke-width:.8;stroke-dasharray:3 9;opacity:.25; }
+.map-water-labels text { fill:#75a7a9;opacity:.76;font-size:10px;font-weight:800;letter-spacing:2.5px; }
+.map-zone { cursor:pointer;outline:none; }
+.map-island { fill:url(#asiatisFill);stroke:#fff;stroke-width:2.4;stroke-linejoin:round;filter:url(#islandShadow);transition:fill .22s ease,stroke .22s ease,stroke-width .22s ease,filter .22s ease; }
+.map-zone-asiatis .map-island { fill:url(#asiatisFill); }
+.map-zone-peralihan .map-island { fill:url(#peralihanFill); }
+.map-zone-australis .map-island { fill:url(#australisFill); }
+.map-zone:hover .map-island,.map-zone:focus .map-island,.map-zone.is-active .map-island { stroke:#fff;stroke-width:4;filter:drop-shadow(0 0 8px rgba(255,255,255,.9)) drop-shadow(0 7px 6px rgba(34,65,50,.26)); }
+.map-zone-asiatis:hover .map-island,.map-zone-asiatis:focus .map-island,.map-zone-asiatis.is-active .map-island { fill:#1b9b67; }
+.map-zone-peralihan:hover .map-island,.map-zone-peralihan:focus .map-island,.map-zone-peralihan.is-active .map-island { fill:#e5a13a; }
+.map-zone-australis:hover .map-island,.map-zone-australis:focus .map-island,.map-zone-australis.is-active .map-island { fill:#337fbe; }
+.map-zone:focus-visible .map-island { stroke:#173e31;stroke-width:5; }
+.map-boundaries path { fill:none;stroke:#f8ffff;stroke-width:3;stroke-dasharray:7 7;stroke-linecap:round;filter:drop-shadow(0 1px 2px rgba(0,0,0,.2)); }
+.map-boundaries .weber-line { stroke:#b65b49;stroke-dasharray:3 7; }
+.boundary-label rect { fill:rgba(255,255,255,.92);stroke:rgba(90,126,111,.3);stroke-width:1; }
+.boundary-label text { fill:#416454;font-size:9px;font-weight:900;text-anchor:middle;letter-spacing:.6px; }
+.boundary-weber rect { stroke:#d6a29b; }
+.boundary-weber text { fill:#99594c; }
+.map-island-labels text { fill:#fff;stroke:rgba(20,69,52,.42);stroke-width:3px;paint-order:stroke;stroke-linejoin:round;font-size:12px;font-weight:950;letter-spacing:1.2px;text-anchor:middle;pointer-events:none; }
+.map-compass circle { fill:rgba(255,255,255,.7);stroke:#8ab7b2;stroke-width:1.4; }
+.map-compass path:first-of-type { fill:#2e7c65; }.map-compass path:nth-of-type(2) { fill:#9bbab5; }
+.map-compass text { fill:#3b7561;font-size:11px;font-weight:900;text-anchor:middle; }
+.map-scale-mark path { stroke:#6f9e9b;stroke-width:2; }.map-scale-mark text { fill:#689695;font-size:8px;font-weight:800;text-anchor:middle;letter-spacing:1.3px; }
+.atlas-map-foot { display:flex;justify-content:space-between;gap:10px;padding:12px 17px;border-top:1px solid #e8f0eb;color:#829188;font-size:9px; }
+.atlas-map-foot > span:first-child { color:#568168;font-weight:850; }.atlas-map-foot > span:first-child span { margin-left:9px;color:#bd873b; }.atlas-map-foot > span:first-child span:last-child { color:#4b82ad; }
+.atlas-sidebar { display:grid;grid-template-rows:1fr auto auto;gap:12px; }
+.map-focus-card { padding:20px;border:1px solid #dcebe1;border-radius:20px;background:linear-gradient(155deg,#fff,#f4faf5);box-shadow:0 13px 35px rgba(28,61,45,.055); }
+.focus-overline { color:#6a9278;font-size:9px;font-weight:900;letter-spacing:.13em; }
+.focus-animal { width:52px;height:52px;display:grid;place-items:center;margin:16px 0 11px;border-radius:16px;background:#e4f3e9;font-size:28px; }
+.map-focus-card h3 { margin:0 0 8px;color:#1c3a2c;font-size:21px;line-height:1.2;letter-spacing:-.035em; }
+.map-focus-card p { min-height:74px;margin:0;color:#67796e;font-size:11px;line-height:1.7; }
+.focus-islands { display:flex;flex-wrap:wrap;gap:6px;margin:14px 0 16px; }
+.focus-islands span { padding:5px 8px;border-radius:999px;background:#eaf2ec;color:#4e6b58;font-size:9px;font-weight:750; }
+.map-focus-link { width:100%;min-height:43px;padding:0 13px;font-size:11px; }
+.atlas-legend-card { padding:16px 17px;border:1px solid #e2ebe5;border-radius:18px;background:#fff; }
+.atlas-legend-card h3 { margin:0 0 8px;color:#3e5849;font-size:12px; }
+.legend-row { display:flex;align-items:center;gap:10px;padding:9px 1px;border-top:1px solid #edf2ee;text-decoration:none;border-radius:7px;transition:background .16s ease; }
+.legend-row:hover,.legend-row.is-active { background:#f3f8f4; }
+.legend-swatch { width:12px;height:12px;flex:0 0 auto;border-radius:4px; }.swatch-asiatis { background:#299467; }.swatch-peralihan { background:#d69a3d; }.swatch-australis { background:#528cba; }
+.legend-row span { display:grid;flex:1;line-height:1.25; }.legend-row strong { color:#40594a;font-size:10px; }.legend-row small { margin-top:3px;color:#86938b;font-size:9px; }.legend-row b { color:#8ba095;font-size:14px; }
+.atlas-note { display:flex;align-items:flex-start;gap:9px;padding:12px;border-radius:14px;background:#fff8e9;color:#916c32; }.atlas-note span { font-size:17px; }.atlas-note p { margin:0;font-size:9px;line-height:1.55; }
+.atlas-mobile-choices { display:none; }
+.atlas-back { display:flex;justify-content:center;margin:25px 0 10px; }
+@media (max-width: 960px) { .atlas-layout { grid-template-columns:minmax(0,1fr) 250px;gap:12px; }.map-focus-card { padding:16px; }.map-focus-card h3 { font-size:18px; } }
+@media (max-width: 740px) {
+  .atlas-hero { min-height:0;margin:12px 0 25px;padding:25px 21px;border-radius:20px; }
+  .atlas-hero h1 { font-size:clamp(27px,7vw,37px); }.atlas-hero p { font-size:12px; }.atlas-hero-mark { width:65px;height:65px;border-radius:19px;font-size:33px; }
+  .atlas-hero-meta { gap:6px 11px;font-size:9px; }
+  .atlas-section-heading { gap:8px; }.atlas-hint { white-space:normal;font-size:9px; }
+  .atlas-layout { grid-template-columns:1fr; }.atlas-sidebar { grid-template-columns:1fr 1fr;grid-template-rows:auto auto; }
+  .map-focus-card { grid-column:1/-1; }.map-focus-card p { min-height:0; }.atlas-note { grid-column:1/-1; }
+  .atlas-mobile-choices { display:grid;gap:8px;margin-top:15px; }
+  .atlas-choice { display:flex;align-items:center;gap:11px;min-height:60px;padding:10px 13px;border:1px solid #e0e9e3;border-radius:15px;background:#fff;text-decoration:none;box-shadow:0 5px 15px rgba(28,61,45,.035); }
+  .atlas-choice > span:first-child { width:36px;height:36px;display:grid;place-items:center;border-radius:11px;background:#eef6ef;font-size:18px; }
+  .atlas-choice > span:nth-child(2) { display:grid;flex:1;line-height:1.25; }.atlas-choice strong { color:#294938;font-size:11px; }.atlas-choice small { margin-top:4px;color:#859188;font-size:9px; }.atlas-choice b { color:#6a8c77;font-size:16px; }
+  .choice-asiatis { border-left:3px solid #299467; }.choice-peralihan { border-left:3px solid #d69a3d; }.choice-australis { border-left:3px solid #528cba; }
+}
+@media (max-width: 420px) {
+  .atlas-hero-mark { display:none; }.atlas-map-topline { min-height:42px;padding:0 12px;font-size:8px; }.map-scale { font-size:8px; }.atlas-map-foot { flex-direction:column;padding:10px 12px; }.atlas-sidebar { grid-template-columns:1fr; }.atlas-legend-card,.atlas-note { grid-column:auto; }
+  .map-island-labels text { font-size:14px; }.map-water-labels text { font-size:12px; }
+}
+@media (prefers-reduced-motion: reduce) { .utility-popover { animation:none; }.map-island { transition:none; } }
+
+@media (pointer: coarse) {
+  /* Keep the setting visible in the popover; it explains why a custom cursor is unavailable on touch screens. */
+  .cursor-toggle { display: inline-flex; align-items: center; justify-content: center; }
+}
+
+/* Ensure popover and optional actions stay truly hidden until requested. */
+.utility-popover { display: none; }
+.utility-menu[open] .utility-popover { display: block; }
+.map-focus-link[hidden] { display: none !important; }
+@media (max-width: 740px) {
+  .map-island-labels text { font-size: 25px; stroke-width: 5px; }
+  .map-water-labels text { font-size: 16px; letter-spacing: 1.3px; }
+}
+@media (max-width: 420px) {
+  .map-island-labels text { font-size: 30px; stroke-width: 5px; }
+  .map-water-labels text { font-size: 17px; letter-spacing: 1px; }
+}
+
+
+.site-tools { left: auto; }
+@media (max-width: 640px) { .site-tools { left: auto; right: 13px; bottom: 13px; } }
+
+/* Detailed Indonesia map: accurate coastline geometry and clearer boundaries */
+.atlas-layout { display:block; }
+.atlas-map-frame { width:100%; }
+.atlas-map-scroll { width:100%; overflow-x:auto; overflow-y:hidden; overscroll-behavior-x:contain; scrollbar-color:#90b9ad #eef5f1; scrollbar-width:thin; }
+.indonesia-map.detailed-map { display:block; width:100%; height:auto; min-width:0; aspect-ratio:1680/720; }
+.detailed-map .map-graticule-line { fill:none; stroke:#79aeb8; stroke-width:1; stroke-dasharray:3 7; opacity:.44; pointer-events:none; }
+.detailed-map .coord-label { fill:#668f9a; font-size:11px; font-weight:750; letter-spacing:.3px; }
+.detailed-map .map-island { stroke:#fff; stroke-width:.68; stroke-linejoin:round; stroke-linecap:round; transition:fill .18s ease,stroke .18s ease,stroke-width .18s ease,filter .18s ease; }
+.detailed-map .map-context-land { fill:#d5dfdc; stroke:#fff; stroke-width:.62; }
+.detailed-map .map-zone-asiatis .map-island { fill:#54ad81; }
+.detailed-map .map-zone-peralihan .map-island { fill:#e4ad4e; }
+.detailed-map .map-zone-australis .map-island { fill:#6d9fc9; }
+.detailed-map .map-zone { cursor:pointer; outline:none; }
+.detailed-map .map-zone:hover .map-island,
+.detailed-map .map-zone:focus .map-island,
+.detailed-map .map-zone.is-active .map-island { stroke:#fff; stroke-width:1.8; filter:drop-shadow(0 0 2.8px rgba(20,55,45,.5)); }
+.detailed-map .map-zone-asiatis:hover .map-island,
+.detailed-map .map-zone-asiatis:focus .map-island,
+.detailed-map .map-zone-asiatis.is-active .map-island { fill:#168b5c; }
+.detailed-map .map-zone-peralihan:hover .map-island,
+.detailed-map .map-zone-peralihan:focus .map-island,
+.detailed-map .map-zone-peralihan.is-active .map-island { fill:#ce8a28; }
+.detailed-map .map-zone-australis:hover .map-island,
+.detailed-map .map-zone-australis:focus .map-island,
+.detailed-map .map-zone-australis.is-active .map-island { fill:#397fb5; }
+.detailed-map .map-zone:focus-visible .map-island { stroke:#173e31; stroke-width:2.4; }
+.detailed-map .country-boundaries { pointer-events:none; }
+.detailed-map .country-boundaries path { fill:none; stroke:#657c77; stroke-width:.85; stroke-dasharray:4 4; opacity:.88; }
+.detailed-map .map-boundaries { pointer-events:none; }
+.detailed-map .boundary-casing { fill:none; stroke:#fff; stroke-width:9; stroke-linecap:round; stroke-linejoin:round; opacity:.96; }
+.detailed-map .wallace-line { fill:none; stroke:#d63f36; stroke-width:4.6; stroke-linecap:round; stroke-linejoin:round; }
+.detailed-map .weber-line { fill:none; stroke:#7144ae; stroke-width:4.6; stroke-dasharray:13 8; stroke-linecap:round; stroke-linejoin:round; }
+.detailed-map .land-label { fill:#294b42; font-size:14px; font-weight:950; letter-spacing:1px; paint-order:stroke; stroke:#fff; stroke-width:4px; stroke-linejoin:round; pointer-events:none; }
+.detailed-map .land-label.major { font-size:17px; }
+.detailed-map .land-label.minor { font-size:11px; font-weight:850; letter-spacing:.35px; }
+.detailed-map .water-label { fill:#528794; font-size:13px; font-weight:800; font-style:italic; letter-spacing:1.1px; opacity:.82; paint-order:stroke; stroke:#d8edf2; stroke-width:4px; pointer-events:none; }
+.detailed-map .boundary-tag { pointer-events:none; }
+.detailed-map .boundary-tag rect { fill:rgba(255,255,255,.96); stroke-width:1.5; }
+.detailed-map .boundary-tag path { fill:none; stroke-width:4; stroke-linecap:round; }
+.detailed-map .boundary-tag text { fill:#263d3b; font-size:12px; font-weight:950; letter-spacing:.5px; text-anchor:middle; }
+.detailed-map .boundary-tag-wallace rect { stroke:#d63f36; }
+.detailed-map .boundary-tag-wallace path { stroke:#d63f36; }
+.detailed-map .boundary-tag-weber rect { stroke:#7144ae; }
+.detailed-map .boundary-tag-weber path { stroke:#7144ae; }
+.detailed-map .map-north circle { fill:rgba(255,255,255,.91); stroke:#7b9e9e; stroke-width:1.5; }
+.detailed-map .map-north path { fill:#236b5c; }
+.detailed-map .map-north text { fill:#245c53; font-size:14px; font-weight:950; text-anchor:middle; }
+.detailed-map .map-coordinate-note { fill:#65858b; font-size:10px; font-weight:700; }
+.map-scroll-hint { display:none; padding:8px 13px; color:#647d74; background:#f6faf8; font-size:10px; text-align:center; border-top:1px solid #e8f0eb; }
+.atlas-sidebar { display:grid; grid-template-columns:minmax(0,1.15fr) minmax(0,1fr) minmax(0,1fr); grid-template-rows:auto; gap:13px; margin-top:15px; }
+.map-focus-card { min-height:100%; }
+.atlas-legend-card { align-self:stretch; }
+.boundary-legend-row { display:flex; align-items:center; gap:10px; padding:8px 1px 3px; border-top:1px solid #edf2ee; }
+.boundary-swatch { display:block; width:25px; flex:0 0 25px; height:0; border-top:4px solid; border-radius:4px; }
+.boundary-swatch-wallace { border-color:#d63f36; }
+.boundary-swatch-weber { border-color:#7144ae; border-top-style:dashed; }
+.boundary-legend-row span { display:grid; line-height:1.25; }
+.boundary-legend-row strong { color:#40594a; font-size:10px; }
+.boundary-legend-row small { margin-top:3px; color:#86938b; font-size:9px; }
+.atlas-note { align-self:stretch; }
+.atlas-note strong { color:#795b29; }
+@media (max-width: 960px) {
+  .atlas-sidebar { grid-template-columns:minmax(0,1fr) minmax(0,1fr); }
+  .map-focus-card { grid-column:1/-1; }
+  .atlas-note { grid-column:1/-1; }
+}
+@media (max-width: 740px) {
+  .atlas-map-scroll { padding-bottom:7px; }
+  .indonesia-map.detailed-map { width:100%; min-width:880px; }
+  .map-scroll-hint { display:block; }
+  .atlas-sidebar { grid-template-columns:1fr; }
+  .map-focus-card,.atlas-note { grid-column:auto; }
+}
+@media (max-width: 420px) {
+  .atlas-map-foot { flex-direction:column; }
+  .atlas-sidebar { grid-template-columns:1fr; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .detailed-map .map-island { transition:none; }
+}
+
+/* v4 map refinements: accurate regional coloring and highly legible linework */
+.detailed-map .map-boundaries .boundary-casing {
+  stroke: #ffffff;
+  stroke-width: 11;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  opacity: 1;
+  vector-effect: non-scaling-stroke;
+}
+.detailed-map .map-boundaries .wallace-line {
+  stroke: #cf332d;
+  stroke-width: 5.5;
+  stroke-dasharray: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
+  filter: drop-shadow(0 1px 2px rgba(75, 24, 18, .26));
+}
+.detailed-map .map-boundaries .weber-line {
+  stroke: #793fba;
+  stroke-width: 5.5;
+  stroke-dasharray: 13 8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
+  filter: drop-shadow(0 1px 2px rgba(55, 29, 88, .25));
+}
+.detailed-map .map-island-labels .land-label {
+  fill: #23483c !important;
+  stroke: none !important;
+  stroke-width: 0;
+  paint-order: normal;
+  stroke-linejoin: round;
+  font-family: Inter, "Segoe UI", Arial, sans-serif;
+  font-size: 15px;
+  font-weight: 950;
+  letter-spacing: .8px;
+  pointer-events: none;
+}
+.detailed-map .map-island-labels .land-label.major { font-size: 18px; }
+.detailed-map .map-island-labels .land-label.minor { font-size: 12px; letter-spacing: .3px; }
+.detailed-map .map-island-labels .land-label.small { font-size: 12px; }
+.detailed-map .map-water-labels .water-label {
+  fill: #286778 !important;
+  stroke: none !important;
+  stroke-width: 0;
+  paint-order: normal;
+  opacity: .98;
+  font-family: Inter, "Segoe UI", Arial, sans-serif;
+  font-size: 14px;
+  font-weight: 850;
+  font-style: italic;
+  letter-spacing: .8px;
+}
+.detailed-map .coord-label {
+  fill: #3d6d78;
+  font-size: 12px;
+  font-weight: 850;
+  paint-order: normal;
+  stroke: none;
+  stroke-width: 0;
+}
+.detailed-map .boundary-tag rect {
+  fill: #fff;
+  stroke-width: 2.5;
+  filter: drop-shadow(0 2px 4px rgba(23, 44, 46, .18));
+}
+.detailed-map .boundary-tag text {
+  fill: #203e3b;
+  font-family: Inter, "Segoe UI", Arial, sans-serif;
+  font-size: 13px;
+  font-weight: 950;
+  letter-spacing: .55px;
+  text-anchor: middle;
+}
+.detailed-map .map-coordinate-note {
+  fill: #496f78;
+  font-size: 11px;
+  font-weight: 800;
+  paint-order: stroke;
+  stroke: #d8edf3;
+  stroke-width: 3px;
+}
+.atlas-section-heading > div > p { max-width: 850px; }
+.atlas-map-topline .map-scale { color: #557d86; font-weight: 700; }
+.atlas-map-foot { color: #58736b; font-weight: 700; }
+.boundary-legend-row strong { font-size: 11px; }
+.boundary-legend-row small { font-size: 10px; color: #687c76; }
+@media (max-width: 740px) {
+  .detailed-map .map-island-labels .land-label.major { font-size: 20px; }
+  .detailed-map .map-island-labels .land-label.minor,
+  .detailed-map .map-island-labels .land-label.small { font-size: 14px; }
+  .detailed-map .map-water-labels .water-label { font-size: 15px; }
+}
