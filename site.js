@@ -9,12 +9,14 @@
   };
 
   const updateHeader = (file) => {
-    document.querySelectorAll('.main-nav a').forEach((a) => {
-      const target = routeFile(a.getAttribute('href'));
-      if ((file === 'home.html' && target === 'home.html') || (file !== 'home.html' && target === 'peta.html')) {
-        a.setAttribute('aria-current', 'page');
-      } else a.removeAttribute('aria-current');
+    const isZone = ['asiatis.html','peralihan.html','australis.html'].includes(file);
+    document.querySelectorAll('.main-nav a').forEach(a => {
+      const target=routeFile(a.getAttribute('href'));
+      if(target===file) a.setAttribute('aria-current','page');
+      else a.removeAttribute('aria-current');
     });
+    const encyclopedia=document.querySelector('[data-encyclopedia-toggle]');
+    if(encyclopedia) {encyclopedia.classList.toggle('is-current',isZone);}
   };
 
   const zoneInfo = {
@@ -71,6 +73,8 @@
       ['Temukan','Lihat letaknya di peta','Pilih gugusan pulau untuk membuka zona fauna.','peta.html#peta-interaktif','Buka peta interaktif'],
       ['Pelajari','Kenali setiap satwa','Baca ciri khas, persebaran, dan klasifikasinya.','home.html#materi','Pahami konsep dasarnya']
     ];
+    items.unshift(items.pop());
+    icons.unshift(icons.pop());
     const guide = document.createElement('nav'); guide.className = 'header-guide'; guide.setAttribute('aria-label','Panduan belajar');
     guide.innerHTML = items.map((item,i) => `<div class="guide-item"><button class="guide-logo" type="button" aria-expanded="false" aria-controls="guide-popup-${i}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${icons[i]}</svg><span>${item[0]}</span></button><div class="guide-popup" id="guide-popup-${i}" hidden><span class="guide-step">0${i+1} / PANDUAN BELAJAR</span><strong>${item[1]}</strong><p>${item[2]}</p><a href="${item[3]}">${item[4]} →</a></div></div>`).join('');
     document.querySelector('.header-inner .main-nav')?.before(guide);
@@ -86,6 +90,59 @@
     document.addEventListener('click',event => { if (!guide.contains(event.target) || event.target.closest('a')) close(); });
     document.addEventListener('keydown',event => { if (event.key === 'Escape') { const active = guide.querySelector('[aria-expanded="true"]'); close(); active?.focus(); } });
   }
+  function initEncyclopediaMenu() {
+    const nav=document.querySelector('.main-nav');
+    if(!nav || nav.querySelector('.encyclopedia-menu')) return;
+    const menu=document.createElement('div');menu.className='encyclopedia-menu';
+    menu.innerHTML='<button type="button" class="encyclopedia-trigger" data-encyclopedia-toggle aria-expanded="false" aria-controls="encyclopedia-links">Ensiklopedia <svg viewBox="0 0 16 16" aria-hidden="true"><path d="m4 6 4 4 4-4"/></svg></button><div class="encyclopedia-links" id="encyclopedia-links" hidden><span class="guide-step">ENSIKLOPEDIA FAUNA</span><a href="asiatis.html"><span class="zone-dot dot-asiatis" aria-hidden="true"></span><span>Zona Asiatis<small>Wilayah barat Indonesia</small></span><span aria-hidden="true">↗</span></a><a href="peralihan.html"><span class="zone-dot dot-peralihan" aria-hidden="true"></span><span>Zona Peralihan<small>Wilayah Wallacea</small></span><span aria-hidden="true">↗</span></a><a href="australis.html"><span class="zone-dot dot-australis" aria-hidden="true"></span><span>Zona Australis<small>Papua dan Kepulauan Aru</small></span><span aria-hidden="true">↗</span></a></div>';
+    nav.append(menu);
+    const button=menu.querySelector('button'),links=menu.querySelector('.encyclopedia-links');
+    const close=()=>{button.setAttribute('aria-expanded','false');links.hidden=true;};
+    button.addEventListener('click',()=>{const opened=button.getAttribute('aria-expanded')==='true';button.setAttribute('aria-expanded',String(!opened));links.hidden=opened;});
+    menu.addEventListener('focusout',event=>{if(!menu.contains(event.relatedTarget))close();});
+    document.addEventListener('click',event=>{if(!menu.contains(event.target)||event.target.closest('.encyclopedia-links a'))close();});
+    document.addEventListener('keydown',event=>{if(event.key==='Escape'&&!links.hidden){close();button.focus();}});
+    const header=document.querySelector('.site-header');
+    const sizeHeader=()=>document.documentElement.style.setProperty('--header-anchor-offset',(header.getBoundingClientRect().height+24)+'px');
+    sizeHeader();
+    if('ResizeObserver' in window) new ResizeObserver(sizeHeader).observe(header);
+  }
+  function initStickers() {
+    // SPA-inserted lazy images can remain deferred. Load this small local set eagerly.
+    document.querySelectorAll('.sticker-stage img, .wild-sticker, .extra-sticker').forEach(img=>{
+      if(img.dataset.stickerBound) return;
+      img.dataset.stickerBound='1';
+      const original=img.getAttribute('src');
+      const stage=img.closest('.sticker-stage')||img.parentElement;
+      let attempts=0,timer=null,button=null;
+      const ready=()=>{if(!img.naturalWidth)return;clearTimeout(timer);timer=null;img.classList.add('sticker-ready');img.classList.remove('sticker-unavailable');button?.remove();button=null;};
+      const offerRetry=()=>{
+        if(!img.isConnected||button)return;
+        img.classList.add('sticker-unavailable');
+        button=document.createElement('button');button.type='button';button.className='sticker-retry';button.textContent='Muat stiker';button.setAttribute('aria-label','Muat ulang '+img.alt);
+        button.addEventListener('click',()=>{attempts=0;button.remove();button=null;img.classList.remove('sticker-unavailable');retry();});stage.append(button);
+      };
+      const retry=()=>{
+        if(!img.isConnected||timer)return;
+        if(img.complete&&img.naturalWidth>0){ready();return;}
+        if(attempts>=2){offerRetry();return;}
+        attempts++;
+        timer=setTimeout(()=>{
+          timer=null;if(!img.isConnected)return;
+          if(img.naturalWidth>0){ready();return;}
+          const path=new URL(original,document.baseURI);
+          if(path.protocol==='http:'||path.protocol==='https:')path.searchParams.set('fauna_retry',String(attempts));
+          img.removeAttribute('src');img.src=path.href;
+        },attempts*700);
+      };
+      img.addEventListener('load',ready);img.addEventListener('error',retry);
+      img.loading='eager';img.decoding='async';
+      if(img.complete){if(img.naturalWidth>0)ready();else retry();}
+      // Decoding also primes assets on repeated client-side navigation.
+      if(img.decode)img.decode().then(ready).catch(()=>{if(img.complete&&!img.naturalWidth)retry();});
+    });
+  }
+
   function scrollPageAnchor(hash) {
     let anchor = hash || '';
     if (anchor.startsWith('#/')) { const second = anchor.indexOf('#',1); anchor = second >= 0 ? anchor.slice(second) : ''; }
@@ -140,6 +197,9 @@
 
   function initPageFeatures() {
     initHeaderGuide();
+    initEncyclopediaMenu();
+    updateHeader(Object.keys(PAGE_DATA).find(key=>PAGE_DATA[key].title===document.title)||'home.html');
+    initStickers();
     document.querySelector('section.info-strip')?.remove();
     const concept=document.querySelector('.concept-section'); if(concept) concept.id='materi';
     const atlas=document.querySelector('.atlas-section'); if(atlas) atlas.id='peta-interaktif';
