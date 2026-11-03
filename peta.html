@@ -359,16 +359,17 @@
       <div class="utility-popover-head"><div><strong>Pengaturan</strong><small>Suara & tampilan</small></div><span aria-hidden="true">✦</span></div>
       <div class="audio-dock">
         <span class="audio-icon" aria-hidden="true">♫</span>
-        <div class="audio-copy"><strong>Suasana Nusantara</strong><span data-audio-status aria-live="polite">Musik berhenti</span></div>
+        <div class="audio-copy"><strong>Suasana Nusantara</strong><span data-audio-status aria-live="polite">Menyiapkan musik…</span></div>
         <button class="audio-toggle" type="button" data-audio-toggle aria-pressed="false" aria-label="Putar musik latar">▶</button>
       </div>
       <label class="volume-control" aria-label="Volume musik"><span aria-hidden="true">♪</span><span>Volume</span><input data-audio-volume type="range" min="0" max="1" step="0.05" value="0.35"></label>
+      <label class="music-picker" for="music-choice"><span>Pilih lagu</span><select id="music-choice" data-music-choice><option value="auto">Otomatis sesuai halaman</option><option value="epic-at-the-jungle">Lagu awal · Epic at the Jungle</option><option value="rimba-senja">Rimba Senja</option><option value="bisik-kanopi">Bisik Kanopi</option><option value="angin-wallacea">Angin Wallacea</option><option value="fajar-papua">Fajar Papua</option></select><small>Pilihan manual tetap dipakai saat berpindah halaman.</small></label>
       <div class="utility-divider"></div>
       <div class="cursor-setting"><div><strong>Kursor hewan</strong><small data-cursor-help>Ganti kursor dengan ikon fauna acak</small></div><button class="cursor-toggle" type="button" data-cursor-toggle aria-pressed="true">ON</button></div>
-      <p class="utility-footnote">Musik tetap berjalan saat berpindah halaman di dalam website.</p>
+      <p class="utility-footnote">Pilih otomatis atau lagu favoritmu. Ketuk halaman jika browser menahan suara.</p>
     </div>
   </details>
 </div>
-<audio data-site-audio preload="none" loop src="https://nullrights.com/download/x2zy8up903"></audio>
+<audio data-site-audio autoplay preload="auto" loop src="assets/audio/epic-at-the-jungle.mp3"></audio>
 </body>
 </html>

@@ -1,4 +1,4 @@
-FAUNA NUSANTARA — https://fadhilandredo.github.io/fauna-nusantara/
+FAUNA NUSANTARA — WEBSITE REFRESH VERSI 6
 
 ISI PAKET
 - home.html, peta.html, asiatis.html, peralihan.html, australis.html
@@ -35,5 +35,28 @@ SUMBER PETA DAN RUJUKAN GARIS
 - Kompas, “Garis Weber, Garis Wallace, dan Garis Lydekker” — keterangan Garis Weber melalui Kepulauan Tanimbar: https://www.kompas.com/skola/read/2020/03/28/080000469/garis-weber-garis-wallace-dan-garis-lydekker
 - Bappenas/KLHK/LIPI, Indonesian Biodiversity Strategy and Action Plan 2015–2020, Gambar 3.2: https://ksdae.kehutanan.go.id/assets/publikasi/Buku_IBSAP%202015-2020.pdf
 
-SUMBER MUSIK
-“Epic at the Jungle” — Indieteur, OpenGameArt.org, lisensi CC0 1.0 (atribusi tidak wajib; dicantumkan sebagai apresiasi). Audio memerlukan koneksi internet dan bergantung pada ketersediaan host sumber.
+MUSIK VERSI 5
+Empat komposisi instrumental orisinal dibuat secara sintetis untuk paket ini:
+- Beranda/Peta versi 5: Rimba Senja (diganti lagu awal pada versi 6)
+- Asiatis: Bisik Kanopi
+- Peralihan: Angin Wallacea
+- Australis: Fajar Papua
+Melodi pentatonik lembut, pad hangat, tekstur angin dan kicau sintetis. Semua MP3 disertakan lokal; tidak memerlukan internet. Musik mencoba autoplay saat dibuka. Browser dapat menahan autoplay bersuara: klik/ketuk halaman atau tekan tombol putar untuk memulai. Tombol jeda dan volume tetap tersedia. Lagu berganti sesuai zona, dan pilihan jeda dihormati selama navigasi internal. Saat muat ulang, musik dicoba otomatis lagi.
+
+PERUBAHAN VERSI 5
+- Urutan beranda: hero, kartu konsep buka-tutup, panduan belajar, jelajah fauna.
+- Enam ilustrasi hewan realistis buatan AI dipotong menjadi stiker WebP transparan. Stiker dan fakta melayang lembut pada desktop. Di ponsel, isi ditata vertikal agar mudah dibaca. Preferensi kurangi gerakan didukung.
+- Huruf isi 18px desktop, tabel lebih lapang dan kontras, klasifikasi dapat dibuka. Ponsel menggunakan kartu per satwa dengan label bagian.
+- Foto fauna dan peta individual dari folder images proyek lama TIDAK disertakan dalam ZIP sumber. Salin folder images tersebut ke samping home.html bila tersedia. Jika tidak, penanda teks ditampilkan sebagai pengganti gambar yang hilang.
+- Isi materi dan peta warisan versi 4 dipertahankan; versi ini berfokus pada tampilan, interaksi, dan audio, bukan audit ilmiah isi ensiklopedia.
+- Semua salinan halaman offline di site.js disinkronkan dengan HTML.
+
+CARA MENJALANKAN
+Ekstrak seluruh ZIP lalu buka home.html atau index.html. Jangan membuka HTML langsung dari tampilan isi ZIP. Untuk memasang di hosting statis, unggah seluruh isi folder fauna-sekolah-refresh.
+
+PERUBAHAN VERSI 6
+- Lagu awal “Epic at the Jungle” — Indieteur, CC0 1.0 — dikembalikan untuk Beranda dan Peta. File audio dari sumber ZIP awal (https://nullrights.com/download/x2zy8up903) kini disertakan lokal sebagai assets/audio/epic-at-the-jungle.mp3.
+- Pengaturan suara memiliki pemilih lagu: otomatis sesuai halaman atau salah satu dari lima lagu. Pilihan manual disimpan di browser dan berlaku lintas halaman. Kembali ke otomatis untuk memakai lagu bawaan tiap zona.
+- Bagian jelajah berisi 12 stiker transparan dan 12 fakta singkat dalam kelompok Asiatis, Peralihan, dan Australis. Stiker bergerak lembut dengan kartu fakta yang tertata. Gerakan mengikuti preferensi kurangi gerakan.
+- Tautan langsung dari bagian jelajah ke halaman satwa dihapus. Kedua tombol jelajah mengarah ke peta.
+- Fitur, ensiklopedia, kartu konsep, dan peta lainnya dipertahankan dari versi 5.
