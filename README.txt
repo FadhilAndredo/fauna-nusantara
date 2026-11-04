@@ -8,12 +8,6 @@ ISI PAKET
 - assets/cursors/*.png (ikon kursor hewan)
 - MAP-SOURCE.txt (catatan sumber dan batas penggunaan peta)
 
-PEMASANGAN
-1. Ekstrak seluruh isi ZIP.
-2. Letakkan file HTML, site.css, site.js, dan folder assets dalam satu folder proyek.
-3. Pertahankan folder images dari proyek lama. Foto fauna dan peta persebaran individual pada tabel masih mengambil file dari folder images tersebut.
-4. Buka home.html melalui browser.
-
 FITUR VERSI 4
 - Semua fitur versi 3 tetap dipertahankan.
 - Halaman peta dibangun ulang dengan garis pantai kepulauan yang diambil dari data GSHHS resolusi intermediate, bukan siluet pulau dekoratif.
@@ -50,9 +44,6 @@ PERUBAHAN VERSI 5
 - Foto fauna dan peta individual dari folder images proyek lama TIDAK disertakan dalam ZIP sumber. Salin folder images tersebut ke samping home.html bila tersedia. Jika tidak, penanda teks ditampilkan sebagai pengganti gambar yang hilang.
 - Isi materi dan peta warisan versi 4 dipertahankan; versi ini berfokus pada tampilan, interaksi, dan audio, bukan audit ilmiah isi ensiklopedia.
 - Semua salinan halaman offline di site.js disinkronkan dengan HTML.
-
-CARA MENJALANKAN
-Ekstrak seluruh ZIP lalu buka home.html atau index.html. Jangan membuka HTML langsung dari tampilan isi ZIP. Untuk memasang di hosting statis, unggah seluruh isi folder fauna-sekolah-refresh.
 
 PERUBAHAN VERSI 6
 - Lagu awal “Epic at the Jungle” — Indieteur, CC0 1.0 — dikembalikan untuk Beranda dan Peta. File audio dari sumber ZIP awal (https://nullrights.com/download/x2zy8up903) kini disertakan lokal sebagai assets/audio/epic-at-the-jungle.mp3.
